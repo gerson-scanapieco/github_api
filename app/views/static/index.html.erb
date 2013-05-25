@@ -1,27 +1,27 @@
 <h1> My Github App </h1>
 
-<form class="form-search">
+<%= form_tag({:controller => "github", :action => "index"},{:method => "get", :class => "form-search"}) do %>
+<!--<form class="form-search" action="/github/index"> -->
   <div class="control-group">
     <label class="control-label" for="inputURL">Repository URL</label>
     <div class="controls">
-      <input type="text" id="repositoryURL" class="input-medium search-query">
+      <%= text_field_tag :repositoryURL, params[:repositoryURL] %>
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputStartDate">Start Date</label>
     <div class="controls">
-      <input type="text" id="startDate" class="input-medium search-query">
+      <%= text_field_tag :startDate, params[:startDate] %>
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="inputStartDate">End Date</label>
+    <label class="control-label" for="inputEndDate">End Date</label>
     <div class="controls">
-      <input type="text" id="endDate" class="input-medium search-query">
+      <%= text_field_tag :endDate,  params[:endDate] %>
     </div>
   </div>
-  <div class="control-group">
-    <div class="controls">
-      <button type="submit" class="btn">Search</button>
-    </div>
+  <div class="form-actions">
+      <%= submit_tag "Search", :name => nil, :class => "btn" %>
   </div>
-</form>
+<!--</form> -->
+<% end %>
