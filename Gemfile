@@ -5,10 +5,10 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'therubyracer'
 gem 'github_api'
 gem 'octokit'
-
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -16,8 +16,6 @@ group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
@@ -38,6 +36,7 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'therubyracer'
 end
 
 group :production do
