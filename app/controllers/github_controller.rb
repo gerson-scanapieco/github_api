@@ -6,7 +6,7 @@ class GithubController < ApplicationController
   def index
     info = parse_url(params[:repositoryURL])
     github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
-    auth = github.authorize_url , :scope => 'repo'
+    auth = github.authorize_url :scope => 'repo'
     @token = github.get_token(auth)
 
     @branches = get_repo_branches(github,info[:repo_name],info[:owner] )
