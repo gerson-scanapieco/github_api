@@ -1,33 +1,35 @@
-<%= @list %>
-<!--
-
-<%= @commits_list.headers %>
-
-<%= @commits_list.inspect %>
-
-<%= @commits_list.to_s %>
--->
-
-<!--
 <table class="table table-condensed">
 <thead> 
   <tr>
     <th>SHA</th>
-    <th>Message</th>
+    <th>Author Email</th>
+    <th>Commit Url</th>
+    <th>Html_url</th>
+    <th>Comments_URL</th>
     <th>Author</th>
-    <th>Date</th>
+    <th>Committer</th>
 </thead>
 <tbody>
 <% @commits_list.each_page do |page| %>
   <% page.each do |commit| %>
-    <tr> 
+    <tr>
       <td><%= commit.sha %></td>
-      <td><%= commit.message %></td>
-      <td><%= commit.login %></td>
-      <td><%= commit.date %></td>
+      <td><%= commit.commit.author.email %></td>
+      <td><%= commit.url %></td>
+      <td><%= commit.html_url %></td>
+      <td><%= commit.comments_url %></td>
+      <% if commit.author.class == Hashie::Mash %>
+        <td><%= commit.author.id %></td>
+      <% else %>
+        <td>Empty</td>
+      <% end %>
+      <% if commit.committer.class == Hashie::Mash %>
+        <td><%= commit.committer.login %></td>
+      <% else %>
+        <td>Empty</td>
+      <% end %>
     </tr>
   <% end %>
 <% end %>
 </tbody>
 </table>
--->

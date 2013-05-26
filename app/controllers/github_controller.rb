@@ -20,7 +20,6 @@ class GithubController < ApplicationController
     else
       @commits_list = github.repos.commits.list info[:user], info[:repo_name], media: 'json'
     end
-     #@hash = JSON.parse(@commits_list.body)
-     @list = Octokit.list_commits("pengwynn/octokit")
+     
   end
 end
