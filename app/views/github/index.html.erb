@@ -19,7 +19,7 @@
         <td><%= commit.commit.message %></td>
       <% else %>
         <td>Empty</td>
-      <% end %>"
+      <% end %>
       <% if commit.commit.author.class == Hashie::Mash %>
        <td><%= commit.commit.author.date %></td>
       <% else %>

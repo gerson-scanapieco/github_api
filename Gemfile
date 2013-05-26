@@ -34,10 +34,16 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :production do
