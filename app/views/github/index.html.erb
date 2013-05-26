@@ -1,33 +1,29 @@
 <table class="table table-condensed">
 <thead> 
   <tr>
-    <th>SHA</th>
-    <th>Author Email</th>
+    <th>Author</th>
+    <th>Message</th>
+    <th>Commit Date</th>
     <th>Commit Url</th>
     <th>Html_url</th>
-    <th>Comments_URL</th>
-    <th>Author</th>
-    <th>Committer</th>
 </thead>
 <tbody>
 <% @commits_list.each_page do |page| %>
   <% page.each do |commit| %>
     <tr>
-      <td><%= commit.sha %></td>
-      <td><%= commit.commit.author.email %></td>
+      <% if commit.committer.class == Hashie::Mash %>
+        <td><%= "https://github.com/#{commit.committer.login}" %></td>
+      <% else %>
+        <td>Empty</td>
+      <% end %>
+      <td><%= commit.message %></td>
+      <% if commit.author.class == Hashie::Mash %>
+       <td><%= commit.author.date %></td>
+      <% else %>
+        <td>Empty</td>
+      <% end %>
       <td><%= commit.url %></td>
       <td><%= commit.html_url %></td>
-      <td><%= commit.comments_url %></td>
-      <% if commit.author.class == Hashie::Mash %>
-        <td><%= commit.author.id %></td>
-      <% else %>
-        <td>Empty</td>
-      <% end %>
-      <% if commit.committer.class == Hashie::Mash %>
-        <td><%= commit.committer.login %></td>
-      <% else %>
-        <td>Empty</td>
-      <% end %>
     </tr>
   <% end %>
 <% end %>
