@@ -5,9 +5,7 @@ class GithubController < ApplicationController
 
   def index
     info = parse_url(params[:repositoryURL])
-    #github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
-    #auth = github.authorize_url :scope => 'repo'
-    github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
+    github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f', :oauth_token => 'f7b2c2a6af6ba7039bc95fc5809ec4118a2dc1bc'
 
     @branches = get_repo_branches(github,info[:repo_name],info[:owner] )
     if (params[:startDate]=="" and params[:endDate]=="")
@@ -25,11 +23,16 @@ class GithubController < ApplicationController
     return {:owner => url[1], :repo_name=>url[2].split(".")[0]}
   end
 
+repos = Github::Repos.new :user => 'peter-murach', :repo => 'github'
+repos.branches do |branch|
+  puts branch.name
+end
+
   def get_repo_branches(git_connection,repo_name,owner)
-    branches = git_connection.repos.branches(owner,repo_name)
+    branches = git_connection.repos.list_branches(owner,repo_name)
     repo_branches = []
     branches.each do |branch|
-      branch_details = git_connection.repos.branch(owner,repo_name, branch.name)
+      branch_details = git_connection.repos.branch(owner,repo_name,branch.name)
       repo_branches.push(branch_details)
     end
     return repo_branches
