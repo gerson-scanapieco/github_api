@@ -7,6 +7,7 @@ gem 'rails', '3.1.0'
 
 gem 'therubyracer'
 gem 'github_api'
+gem 'octokit'
 
 
 # Gems used only for assets and not required
