@@ -16,9 +16,13 @@
       <% else %>
         <td>Empty</td>
       <% end %>
-      <td><%= commit.message %></td>
-      <% if commit.author.class == Hashie::Mash %>
-       <td><%= commit.author.date %></td>
+      <% if commit.commit.class == Hashie::Mash %>
+        <td><%= commit.commit.message %></td>
+      <% else %>
+        <td>Empty</td>
+      <% end %>
+      <% if commit.commit.author.class == Hashie::Mash %>
+       <td><%= commit.commit.author.date %></td>
       <% else %>
         <td>Empty</td>
       <% end %>
