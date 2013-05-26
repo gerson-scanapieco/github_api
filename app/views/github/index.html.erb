@@ -4,7 +4,6 @@
     <th>Author</th>
     <th>Message</th>
     <th>Commit Date</th>
-    <th>Commit Url</th>
     <th>Html_url</th>
 </thead>
 <tbody>
@@ -12,7 +11,7 @@
   <% page.each do |commit| %>
     <tr>
       <% if commit.committer.class == Hashie::Mash %>
-        <td><%= "https://github.com/#{commit.committer.login}" %></td>
+        <td><%= link_to nil, "http://github.com/#{commit.committer.login}" %></td>
       <% else %>
         <td>Empty</td>
       <% end %>
@@ -20,14 +19,13 @@
         <td><%= commit.commit.message %></td>
       <% else %>
         <td>Empty</td>
-      <% end %>
+      <% end %>"
       <% if commit.commit.author.class == Hashie::Mash %>
        <td><%= commit.commit.author.date %></td>
       <% else %>
         <td>Empty</td>
       <% end %>
-      <td><%= commit.url %></td>
-      <td><%= commit.html_url %></td>
+      <td><%= link_to nil, "#{commit.html_url}" %></td>
     </tr>
   <% end %>
 <% end %>

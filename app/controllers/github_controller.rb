@@ -15,11 +15,11 @@ class GithubController < ApplicationController
     github = Github.new #:client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
     #github.authorize_url :redirect_uri => 'http://localhost', :scope => 'repo'
 
-    if !params[:startDate] == "" and !params[:endDate] == "" 
-      @commits_list = github.repos.commits.list info[:user], info[:repo_name], :since => params[:startDate], :until => params[:endDate], media: 'json'
+    if (params[:startDate]=="" and params[:endDate]=="")
+      @commits_list = github.repos.commits.list info[:user], info[:repo_name]    
     else
-      @commits_list = github.repos.commits.list info[:user], info[:repo_name], media: 'json'
+      @commits_list = github.repos.commits.list info[:user], info[:repo_name], :since => params[:startDate], :until => params[:endDate]
     end
-     
   end
+
 end
