@@ -32,19 +32,20 @@
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-  <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
-    <div class="navbar navbar-fixed-top">
+
+    <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">GithubApp</a>
-          <div class="container nav-collapse">
+          <a class="brand">GithubApp</a>
+          <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Github Code", "https://github.com/gerson-scanapieco/github_app"  %></li>
             </ul>
@@ -53,12 +54,13 @@
       </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-          <div class="span9">
-            <%= yield %>
-          </div>
-        </div><!--/row-->
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div><!--/row-->
 
       <footer>
         <p>&copy; Gerson Scanapieco 2013</p>
