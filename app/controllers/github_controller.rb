@@ -6,8 +6,8 @@ class GithubController < ApplicationController
   def index
     info = parse_url(params[:repositoryURL])
     github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
-    @auth = github.authorize_url :scope => 'repo'
-    #token = github.get_token(auth)
+    auth = github.authorize_url :scope => 'repo'
+    token = github.get_token("f7b2c2a6af6ba7039bc95fc5809ec4118a2dc1bc")
 
     @branches = get_repo_branches(github,info[:repo_name],info[:owner] )
     if (params[:startDate]=="" and params[:endDate]=="")
