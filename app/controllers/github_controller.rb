@@ -11,10 +11,12 @@ class GithubController < ApplicationController
 
   def index
     info = parse_url(params[:repositoryURL])
-    #params[:startDate] == "" ? @start_date = params[:startDate] : @start_date = "a"
-    #params[:endDate] == "" ? @end_date = params[:endDate] : @end_date = "b"
     github = Github.new
-    @commits_list = github.repos.commits.list info[:user], info[:repo_name]#, :since => start_date, :until =>end_date
+    if !params[:startDate] == "" and !params[:endDate] == "" 
+      @commits_list = github.repos.commits.list info[:user], info[:repo_name], :since => params[:startDate], :until => params[:endDate]
+    else
+      @commits_list = github.repos.commits.list info[:user], info[:repo_name]
+    end
+     @hash = @commits_list.to_s
   end
-
 end

@@ -1,6 +1,42 @@
-<%= @info_0 %>
-<%= @info_1 %>
-<%= @start_date %>
-<%= @end_date %>
-<%= @commits_list %>
+<h1> Default response </h1>
 
+
+<%= @hash %>
+
+<h1>To_S</h1>
+
+
+<<%= @commits_list %>
+
+<!--
+
+<%= @commits_list.headers %>
+
+<%= @commits_list.inspect %>
+
+<%= @commits_list.to_s %>
+-->
+
+<!--
+<table class="table table-condensed">
+<thead> 
+  <tr>
+    <th>SHA</th>
+    <th>Message</th>
+    <th>Author</th>
+    <th>Date</th>
+</thead>
+<tbody>
+<% @commits_list.each_page do |page| %>
+  <% page.each do |commit| %>
+    <tr> 
+      <td><%= commit.sha %></td>
+      <td><%= commit.message %></td>
+      <td><%= commit.login %></td>
+      <td><%= commit.date %></td>
+    </tr>
+  <% end %>
+<% end %>
+</tbody>
+</table>
+-->
