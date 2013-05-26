@@ -5,11 +5,9 @@ class GithubController < ApplicationController
 
   def index
     info = parse_url(params[:repositoryURL])
-    github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
-    auth = github.authorize_url :scope => 'repo'
-    
-    #TODO Figure what token is this, since its not the github api access token from github site
-    #token = github.get_token("")
+    #github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
+    #auth = github.authorize_url :scope => 'repo'
+    github = authorize
 
     @branches = get_repo_branches(github,info[:repo_name],info[:owner] )
     if (params[:startDate]=="" and params[:endDate]=="")
@@ -35,6 +33,19 @@ class GithubController < ApplicationController
       repo_branches.push(branch_details)
     end
     return repo_branches
+  end
+
+  def authorize
+    github = Github.new :client_id => '942e65ee8b3ba57761ea', :client_secret => 'd464b55fbe4b80f280a255a10a1688658eacf34f'
+    address = github.authorize_url scope: 'repo'
+    redirect_to address
+    return github
+  end
+
+  def callback
+    authorization_code = params[:code]
+    access_token = github.get_token authorization_code
+    access_token.token   # => returns token value
   end
 
 end

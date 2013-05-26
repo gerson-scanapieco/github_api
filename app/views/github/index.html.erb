@@ -11,7 +11,7 @@
     <% @branches.each do |element| %>
       <tr>
         <td><%= element.name %></td>
-        <td><%= element.commit.commit %></td>
+        <td><%= element.commit %></td>
         <td><%= link_to nil, "#{element._links.html}" %></td>
       </tr>
     <% end %> 
