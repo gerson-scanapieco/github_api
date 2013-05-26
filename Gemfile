@@ -7,6 +7,7 @@ gem 'rails', '3.1.0'
 
 gem 'github_api'
 gem 'octokit'
+gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
@@ -36,7 +37,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'therubyracer'
 end
 
 group :production do
