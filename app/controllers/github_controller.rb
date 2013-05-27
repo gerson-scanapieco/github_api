@@ -9,9 +9,9 @@ class GithubController < ApplicationController
 
     @branches = get_repo_branches(github,info[:repo_name],info[:owner] )
     if (params[:startDate]=="" and params[:endDate]=="")
-      @commits_list = github.repos.commits.list info[:owner], info[:repo_name]    
+      @commits_list = github.repos.commits.list info[:owner], info[:repo_name] , :sha =>'development' 
     else
-      @commits_list = github.repos.commits.list info[:owner], info[:repo_name], :since => params[:startDate], :until => params[:endDate]
+      @commits_list = github.repos.commits.list info[:owner], info[:repo_name], :since => params[:startDate], :until => params[:endDate] , :sha => 'development'
     end
   end
 
@@ -23,19 +23,14 @@ class GithubController < ApplicationController
     return {:owner => url[1], :repo_name=>url[2].split(".")[0]}
   end
 
-repos = Github::Repos.new :user => 'peter-murach', :repo => 'github'
-repos.branches do |branch|
-  puts branch.name
-end
-
   def get_repo_branches(git_connection,repo_name,owner)
-    branches = git_connection.repos.list_branches(owner,repo_name)
-    repo_branches = []
-    branches.each do |branch|
-      branch_details = git_connection.repos.branch(owner,repo_name,branch.name)
-      repo_branches.push(branch_details)
+    branches_info = {}
+    all_branches = git_connection.repos.list_branches owner,repo_name
+
+    all_branches.body.each do |branch|
+      branches_info["#{branch.name}".to_s] = "#{branch.commit.url}"
     end
-    return repo_branches
+    return branches_info
   end
 
   def authorize

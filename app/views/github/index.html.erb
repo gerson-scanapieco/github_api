@@ -1,21 +1,8 @@
-<!-- Branches  -->
-<table class="table table-condensed">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Commit</th>
-      <th>Links</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @branches.each do |element| %>
-      <tr>
-        <td><%= element.name %></td>
-        <td><%= link_to nil, "#{element._links.html}" %></td>
-      </tr>
-    <% end %> 
-  </tbody>
-</table>
+<%= @branches %>
+
+
+
+
 
 <!-- Commits -->
 <table class="table table-condensed"> 
