@@ -1,8 +1,5 @@
-<%= @branches %>
-
-
-
-
+<% commit = @commits_list[0] %>
+<%= commit.body[0].class %>
 
 <!-- Commits -->
 <table class="table table-condensed"> 
@@ -14,8 +11,8 @@
     <th>Html_url</th>
 </thead>
 <tbody>
-<% @commits_list.each_page do |page| %>
-  <% page.each do |commit| %>
+<% @commits_list.each do |element| %>
+  <%- element.body.each do |commit| %>
     <tr>
       <% if commit.committer.class == Hashie::Mash %>
         <td><%= link_to nil, "http://github.com/#{commit.committer.login}" %></td>
