@@ -1,5 +1,3 @@
-<% commit = @commits_list[0] %>
-<%= commit.body[0].class %>
 
 <!-- Commits -->
 <table class="table table-condensed"> 
@@ -9,10 +7,11 @@
     <th>Message</th>
     <th>Commit Date</th>
     <th>Html_url</th>
+    <th>Branch</th>
 </thead>
 <tbody>
-<% @commits_list.each do |element| %>
-  <%- element.body.each do |commit| %>
+<% @commits_list.each_value do |element| %>
+  <% element.body.each do |commit| %>
     <tr>
       <% if commit.committer.class == Hashie::Mash %>
         <td><%= link_to nil, "http://github.com/#{commit.committer.login}" %></td>
@@ -30,6 +29,7 @@
         <td>Empty</td>
       <% end %>
       <td><%= link_to nil, "#{commit.html_url}" %></td>
+      <td><%= @commits_list.key(element) %></td>
     </tr>
   <% end %>
 <% end %>

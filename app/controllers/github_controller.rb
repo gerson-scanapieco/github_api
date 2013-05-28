@@ -28,15 +28,15 @@ class GithubController < ApplicationController
   end
 
   def fetch_commits_data(git_connection,repo_name,owner,start_date="",end_date="")
-    commits_list=[]
+    commits_list={}
     branches = get_repo_branches(git_connection,repo_name,owner) 
     if (start_date=="" and end_date=="")
       branches.keys.each do |branch_name|
-        commits_list.push (git_connection.repos.commits.list owner, repo_name, :sha => branch_name)
+        commits_list["#{branch_name}"]  = (git_connection.repos.commits.list owner, repo_name, :sha => branch_name)
       end
     else
       branches.keys.each do |branch|
-        commits_list.push (git_connection.repos.commits.list owner,repo_name, start_date, end_date, :sha => branch_name)
+        commits_list["#{branch_name}"]  = (git_connection.repos.commits.list owner,repo_name, start_date, end_date, :sha => branch_name)
       end
     end
     return commits_list
