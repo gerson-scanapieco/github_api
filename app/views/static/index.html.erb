@@ -4,22 +4,26 @@
   <div class="control-group">
     <label class="control-label" for="inputURL">Repository URL</label>
     <div class="controls">
-      <%= text_field_tag :repositoryURL, params[:repositoryURL], placeholder: "Github Read-only URL" %>
+      <%= text_field_tag :repositoryURL, params[:repositoryURL], placeholder: "Github Read-only URL"%>
+      <span id="url_error"></span>  
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputStartDate">Start Date</label>
     <div class="controls">
       <%= text_field_tag :startDate, params[:startDate], placeholder: "DD-MM-YYYY"%>
+      <span id="start_date_error"></span>  
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="inputEndDate">End Date</label>
     <div class="controls">
       <%= text_field_tag :endDate,  params[:endDate], placeholder: "DD-MM-YYYY" %>
+      <span id="end_date_error"></span>  
     </div>
   </div>
   <div class="form-actions">
       <%= submit_tag "Search", :name => nil, :class => "btn" %>
   </div>
 <% end %>
+
