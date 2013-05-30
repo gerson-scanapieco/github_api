@@ -1,4 +1,3 @@
-
 <!-- Commits -->
 <table class="table table-condensed"> 
 <thead> 
@@ -16,7 +15,7 @@
       <% if commit.committer.class == Hashie::Mash %>
         <td><%= link_to nil, "http://github.com/#{commit.committer.login}" %></td>
       <% else %>
-        <td>Empty</td>
+        <td><%= commit.commit.author.name %></td>
       <% end %>
       <% if commit.commit.class == Hashie::Mash %>
         <td><%= commit.commit.message %></td>
