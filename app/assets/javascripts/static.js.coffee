@@ -1,6 +1,6 @@
 jQuery ->
   $("#repositoryURL").blur ->
-    if this.value.match("git:\/\/github.com\/[a-z]*\/[a-z]*.git")
+    if this.value.match(/git:\/\/github.com\/[\w-]*\/[\w-]*.git/)
       $("#url_error").text("")
     else
       $("#url_error").text("Invalid URL")
