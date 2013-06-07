@@ -1,6 +1,6 @@
 <h1> Github Repository Activities </h1>
 
-<%= form_tag({:controller => "github", :action => "index"},{:method => "get", :class => "form-search"}) do %>
+<%= form_tag({:controller => "github", :action => "index"},{:id => "search-form",:method => "get", :class => "form-search"}) do %>
   <div class="control-group">
     <label class="control-label" for="inputURL">Repository URL</label>
     <div class="controls">
